@@ -22,14 +22,15 @@ public class PomodoroTimer {
 
 
 
+    private AtomicBoolean isRunning = new AtomicBoolean(false);
 
+    long endTime = 0;
 
     public void timer(int hours, int minutes, int seconds) {
         AtomicInteger hoursCounter = new AtomicInteger(hours);
         AtomicInteger minutesCounter = new AtomicInteger(minutes);
         AtomicInteger secondsCounter = new AtomicInteger(seconds);
         StringBuffer description = new StringBuffer("");
-        AtomicBoolean isRunning = new AtomicBoolean(false);
 
 
         JFrame frame = new JFrame("Timer");
@@ -68,22 +69,37 @@ public class PomodoroTimer {
         label.setLocation(100, 0);
         label.setFont(new Font(label.getName(), Font.BOLD, 40));
 
-        long endTime = 0;
 
 
-        //a picture background for the frame
+
         ImageIcon image = new ImageIcon("src/main/resources/images/background.jpg");
         frame.add(new JLabel(image, JLabel.CENTER));
         frame.setLayout(new FlowLayout());
         frame.setVisible(true);
 
+        //start timer
+        startTimer(hoursCounter, minutesCounter, secondsCounter, label, description);
 
-        //перенести код ниже в отдельный метод vvvvvvvvvvvvvvvvvvvvvvvvvvv
+
+        try {
+            AudioInputStream audioInputStream = AudioSystem.getAudioInputStream(new File("src/main/resources/sounds/Чика.wav"));
+            Clip clip = AudioSystem.getClip();
+            clip.open(audioInputStream);
+            clip.start();
+            FloatControl gainControl = (FloatControl) clip.getControl(FloatControl.Type.MASTER_GAIN);
+            gainControl.setValue(-10.0f);
+            JOptionPane.showMessageDialog(frame, "Time is up!");
+            clip.stop();
+        } catch (Exception ex) {
+            ex.printStackTrace();
+        }
+    }
+
+    //method to start timer and change label every second
+    private void startTimer(AtomicInteger hoursCounter, AtomicInteger minutesCounter, AtomicInteger secondsCounter, JLabel label, StringBuffer description) {
         while (!isRunning.get()) {
             endTime = System.currentTimeMillis() + (hoursCounter.get() * 60 * 60 * 1000) + (minutesCounter.get() * 60 * 1000) + (secondsCounter.get() * 1000);
         }
-
-
 
         while (System.currentTimeMillis() < endTime) {
             long timeLeft = endTime - System.currentTimeMillis();
@@ -98,23 +114,6 @@ public class PomodoroTimer {
             }
 
         }
-
-
-        //make a sound when the time is up and stop it after pressing the escape key
-        try {
-            AudioInputStream audioInputStream = AudioSystem.getAudioInputStream(new File("src/main/resources/sounds/Чика.wav"));
-            Clip clip = AudioSystem.getClip();
-            clip.open(audioInputStream);
-            clip.start();
-            FloatControl gainControl = (FloatControl) clip.getControl(FloatControl.Type.MASTER_GAIN);
-            gainControl.setValue(-10.0f);
-            JOptionPane.showMessageDialog(frame, "Time is up!");
-            clip.stop();
-        } catch (Exception ex) {
-            ex.printStackTrace();
-        }
-
-
     }
 
 
