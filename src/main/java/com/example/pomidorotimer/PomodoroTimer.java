@@ -1,7 +1,7 @@
 package com.example.pomidorotimer;
 
 
-import com.example.pomidorotimer.Repository.PomidoroTimerRepository;
+import com.example.pomidorotimer.Repository.PomodoroTimerRepository;
 import lombok.Data;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
@@ -18,15 +18,10 @@ import java.util.concurrent.atomic.AtomicInteger;
 
 @Data
 @Component
-public class PomidoroTimer {
+public class PomodoroTimer {
 
 
-    private PomidoroTimerRepository pomidoroRepository;
 
-    @Autowired
-    public PomidoroTimer(PomidoroTimerRepository pomidoroRepository) {
-        this.pomidoroRepository = pomidoroRepository;
-    }
 
 
     public void timer(int hours, int minutes, int seconds) {
