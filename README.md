@@ -1,4 +1,6 @@
 # Timer project
+### Spring 5
+
 That a simple timer for a future "grip trainer".
 
 ## Features:
