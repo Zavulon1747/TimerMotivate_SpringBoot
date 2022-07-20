@@ -7,7 +7,7 @@ import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
 
 @Configuration
-@ComponentScan("com.example.pomidorotimer")
+@ComponentScan(basePackages = "com.example.pomidorotimer")
 public class PomodoroTimerApplication {
 
     public static void main(String[] args) {

@@ -1,9 +1,7 @@
 package com.example.pomidorotimer;
 
 
-import com.example.pomidorotimer.Repository.PomodoroTimerRepository;
 import lombok.Data;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 import javax.sound.sampled.AudioInputStream;
@@ -19,8 +17,6 @@ import java.util.concurrent.atomic.AtomicInteger;
 @Data
 @Component
 public class PomodoroTimer {
-
-
 
     private AtomicBoolean isRunning = new AtomicBoolean(false);
 
