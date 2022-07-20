@@ -7,7 +7,6 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.Table;
-import javax.validation.constraints.NotNull;
 import java.time.LocalDateTime;
 
 @Data
@@ -18,7 +17,6 @@ public class PomidoroTask {
     @Id
     @GeneratedValue(strategy = javax.persistence.GenerationType.AUTO)
     private Integer id;
-    @NotNull
     private String description;
     @JsonFormat(pattern = "ss:mm:HH dd/MM/yyyy")
     private LocalDateTime date_of_done;

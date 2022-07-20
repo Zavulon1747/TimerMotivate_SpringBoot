@@ -1,16 +1,19 @@
 package com.example.pomidorotimer;
 
-import com.example.pomidorotimer.Repository.PomidoroTimerRepository;
-import org.springframework.boot.SpringApplication;
-import org.springframework.boot.autoconfigure.SpringBootApplication;
 
-@SpringBootApplication
+import org.springframework.context.ApplicationContext;
+import org.springframework.context.annotation.AnnotationConfigApplicationContext;
+import org.springframework.context.annotation.Configuration;
+
+@Configuration
 public class PomidoroTimerApplication {
 
 
 
     public static void main(String[] args) {
-        new PomidoroTimer().timer(0, 0, 0);
+        ApplicationContext context = new AnnotationConfigApplicationContext(PomidoroTimerApplication.class);
+
+        PomidoroTimer pomidoroTimer = context.getBean(PomidoroTimer.class);
     }
 
 }
