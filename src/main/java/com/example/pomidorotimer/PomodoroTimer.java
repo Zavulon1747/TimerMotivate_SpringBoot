@@ -40,7 +40,7 @@ public class PomodoroTimer {
         JTextField minutesField = new JTextField(2);
         JTextField secondsField = new JTextField(2);
         JTextField descriptionField = new JTextField(2);
-
+//some
         JPanel panel = new JPanel();
         panel.add(hoursField);
         panel.add(minutesField);
