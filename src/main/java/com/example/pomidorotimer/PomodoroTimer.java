@@ -27,7 +27,7 @@ public class PomodoroTimer {
         AtomicInteger minutesCounter = new AtomicInteger(minutes);
         AtomicInteger secondsCounter = new AtomicInteger(seconds);
         StringBuffer description = new StringBuffer("");
-
+//
 
         JFrame frame = new JFrame("Timer");
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
